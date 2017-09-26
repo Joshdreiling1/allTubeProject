@@ -1,0 +1,4 @@
+{METHOD}https://api.vimeo.com{endpoint}
+
+https://developer.vimeo.com/api/start
+https://developers.google.com/youtube/iframe_api_reference
