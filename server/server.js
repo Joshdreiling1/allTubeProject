@@ -98,17 +98,16 @@ passport.use( new Auth0Strategy({
     })
 
     app.get('/api/youtubevideos', (req, res) => {
-        // req.app.get('https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20').then(ytvid =>{
-        //         res.send(ytvid)
-        //     }).catch((err) => {console.log(err)})
-        // })
     const request = require('request');
-    request('https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20', function (error, response, body) {
+    request('https://www.googleapis.com/youtube/v3/search?key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20', function (error, response, body) {
           if (!error && response.statusCode == 200) {
-            console.log(body) // Show the HTML for the Google homepage. 
+            res.send(body)
+            console.log(body)
           }
         })
     })
+
+
     
 
 const port = 3535;

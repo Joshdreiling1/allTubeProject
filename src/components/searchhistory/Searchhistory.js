@@ -15,7 +15,7 @@ export default class History extends Component {
        axios.get('http://localhost:3535/api/history').then(response => {
            this.setState({
                history: response.data
-            })
+            })  
          
      })
 

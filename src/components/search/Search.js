@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
+
 export default class Search extends Component {
   constructor() {
     super()
@@ -22,37 +23,20 @@ export default class Search extends Component {
         .catch(function (error) {
           console.log(error)
         })}
-        // axios.get('https://swapi.co/api/people/').then(response => {
-        //   this.setState({
-        //     name: response.data.results[random].name
-        //   })
-        // })
 
-
-
-        updateInput(input){
-          this.setState({ search: input, ytvideosearch: input });
-        }
-        componentDidMount(){
+        ytSearch(){
+          console.log('componentdidmountisrunning')
           axios.get('http://localhost:3535/api/youtubevideos').then(response => {
             this.setState({
               ytvideo: response.data
             })
-          })
-        
+          }).catch((error) => {console.log(error)})
         }
+        
 
         render(){
-          var ytresults = this.state.ytvideo.map(function(ytvideo){
-            return (
-              <div className='ytresults'>
-                <div>
-                  {ytvideo}
-                  </div>
-                  </div>
                   
-            )
-          })
+            
           console.log(this.state)
         return (
         <div>
@@ -64,11 +48,22 @@ export default class Search extends Component {
                  </div> 
                 <div className='inputbox'>
                 <input onChange={(e) => this.updateInput(e.target.value)}></input> 
-                <button className='searchbutton' onClick={() => this.postSearch()}> Search </button>
+                <button className='searchbutton' onClick={() => this.postSearch()} onClick={() => this.ytSearch()}> Search </button>
+                <div>
+<iframe 
+  width="35%"
+  height="350"
+  frameborder="0"
+  src="http://localhost:3535/api/youtubevideos" 
+  allowfullscreen
+  frameBorder="1">
+  
+</iframe>
                     </div>
-                    {ytresults}
+                    </div>
+            
          </div>
 
         )
     }
-}
+  }
