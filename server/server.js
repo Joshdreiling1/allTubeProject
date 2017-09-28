@@ -16,7 +16,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
-
+app.use(bodyParser.json())
 // massive connection
 massive(process.env.CONNECTION_STRING)
 .then( db => {
@@ -31,18 +31,19 @@ passport.use( new Auth0Strategy({
   }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
     // databse stuff
-    //     db.get_user([profile.identities[0].user_id]).then( user => {
-    //         if (user[0]) {
-    //             done(null, user[0].id)
-    //         } else {
-    //             db.create_user([
-    //                 profile.emails[0].value,
-    //                 profile.password,
-    //                 profile.identities[0].user_id]).then( user => {
-    //                     done(null, user[0].id)
-    //                 })
-    //         }})
-    //   }))
+        db.get_user([profile.identities[0].user_id]).then( user => {
+            if (user[0]) {
+                done(null, user[0].id)
+            } else {
+                db.create_user([
+                    profile.emails[0].value,
+                    profile.password,
+                    profile.identities[0].user_id]).then( user => {
+                        done(null, user[0].id)
+                    })
+            }})
+      }))
+
 
      passport.serializeUser(function(userId, done) {
         done(null, userId);
@@ -54,20 +55,21 @@ passport.use( new Auth0Strategy({
     })
     app.get('/auth', passport.authenticate('auth0'));
     app.get('/auth/callback', passport.authenticate('auth0',{
-        successRedirect: 'http://localhost:3000/#/dashboard',
+        successRedirect: 'http://localhost:3000/#/',
         failureRedirect: '/auth'
       }))
       app.get('/auth/logout', (req,res) => {
         req.logOut();
-        res.redirect(302, 'http://localhost:3000/#/')
+        res.redirect(302, 'https://joshdreiling.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F&client_id=Fd9JMpbOX09oR0Ack42zg5vaoMsZoCFN')
     })
 
-    app.get('/api/friend/list', (req, res) => {
-        console.log('something')
-        req.app.get('db').get_friends().then(friends =>{
-            res.status(200).send(friends);
-        }).catch((err) => {console.log(err)})
-    })
+
+    // app.get('/api/friend/list', (req, res) => {
+    //     console.log('something')
+    //     req.app.get('db').get_friends().then(friends =>{
+    //         res.status(200).send(friends);
+    //     }).catch((err) => {console.log(err)})
+    // })
 
     app.get('/api/user', (req, res) => {
         req.app.get('db').current_user().then(user =>{
@@ -78,6 +80,35 @@ passport.use( new Auth0Strategy({
     // app.update('/api/user', (req, res) => {
     //     let {}
     // })
+    app.post('/api/history', (req, res) =>{
+        const history = app.get('db')
+        req.app.get('db').create_history(req.body.search).then(search =>{
+
+            res.send()
+
+        }).catch( function(err){
+            console.log(err)
+        })
+    })
+
+    app.get('/api/history', (req, res) => {
+        req.app.get('db').get_history().then(history =>{
+            res.status(200).send(history);
+        }).catch((err) => {console.log(err)})
+    })
+
+    app.get('/api/youtubevideos', (req, res) => {
+        // req.app.get('https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20').then(ytvid =>{
+        //         res.send(ytvid)
+        //     }).catch((err) => {console.log(err)})
+        // })
+    const request = require('request');
+    request('https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20', function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log(body) // Show the HTML for the Google homepage. 
+          }
+        })
+    })
     
 
 const port = 3535;

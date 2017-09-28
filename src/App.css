@@ -1,10 +1,11 @@
-body {
-  background-color: #C9C9C9;
-}
 
 .App {
   text-align: center;
+  /* background-color: #696969; */
+  
 }
+
+
 
 
 
@@ -19,10 +20,6 @@ body {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
 .Header-title{
   text-align: left;
@@ -38,7 +35,7 @@ body {
 .upload{
   height: 450px;
   width: 400px;
-  background-color:#696969;
+  background-color:#C9C9C9;
   margin-top: 150px;
   margin-left: 350px;
 }
@@ -46,7 +43,7 @@ body {
 .searchbox{
   height: 450px;
   width: 400px;
-  background-color:#696969;
+  background-color:#C9C9C9;
   margin-top: -450px;
   margin-left: 1200px;
 }
@@ -54,4 +51,10 @@ body {
 .signup{
   margin-left: 1600px;
 
+}
+
+.footer{
+  /* background-color: #696969; */
+  height: 21vh;
+  width: 100vh;
 }
