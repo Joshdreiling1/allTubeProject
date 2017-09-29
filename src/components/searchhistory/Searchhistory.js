@@ -37,6 +37,7 @@ export default class History extends Component {
             <div className="App-header">
             <Link to='/'><h2 className="Header-title">allTube</h2></Link>
             <button className='signup'> Sign in or Sign up </button>
+            <a href={'http://localhost:3535/auth/logout'}><button className='logout'> Logout </button> </a>
             </div>
             <h1> You recently searched for: </h1>
             <button > View history </button>

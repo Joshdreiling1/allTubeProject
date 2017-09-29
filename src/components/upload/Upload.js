@@ -9,6 +9,7 @@ export default class Upload extends Component {
             <div className="App-header">
             <Link to='/'><h2 className="Header-title">allTube</h2></Link>
             <button className='signup'> Sign in or Sign up </button>
+            <a href={'http://localhost:3535/auth/logout'}><button className='logout'> Logout </button> </a>
             </div>
 
 

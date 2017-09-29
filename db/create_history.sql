@@ -1,5 +1,5 @@
 insert into history
-(searches)
+(id, searches)
 values
-($1)
+($1, $2)
 RETURNING *;

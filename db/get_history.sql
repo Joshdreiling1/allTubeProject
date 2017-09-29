@@ -1,2 +1,3 @@
 SELECT *
-FROM history;
+FROM history 
+where id = $1

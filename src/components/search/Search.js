@@ -13,7 +13,7 @@ export default class Search extends Component {
       }
   }
         postSearch(search){
-
+          console.log()
         axios.post('http://localhost:3535/api/history', {
           search: this.state.search
         })
@@ -23,15 +23,19 @@ export default class Search extends Component {
         .catch(function (error) {
           console.log(error)
         })}
-
-        ytSearch(){
-          console.log('componentdidmountisrunning')
-          axios.get('http://localhost:3535/api/youtubevideos').then(response => {
-            this.setState({
-              ytvideo: response.data
-            })
-          }).catch((error) => {console.log(error)})
+                updateInput(input){
+          this.setState({ search: input});
         }
+
+        // componentDidMount(input){
+        //   console.log('componentdidmountisrunning')
+        //   axios.get('http://localhost:3535/api/youtubevideos').then(response => {
+        //     this.setState({
+        //       ytvideo: response.data,
+        //       search: input
+        //     })
+        //   }).catch((error) => {console.log(error)})
+        // }
         
 
         render(){
@@ -44,18 +48,19 @@ export default class Search extends Component {
               <div className="App-header">
             <Link to='/'><h2 className="Header-title">allTube</h2></Link>
             <button className='signup'> Sign in or Sign up </button>
+            <a href={'http://localhost:3535/auth/logout'}><button className='logout'> Logout </button> </a>
               </div>
                  </div> 
                 <div className='inputbox'>
                 <input onChange={(e) => this.updateInput(e.target.value)}></input> 
-                <button className='searchbutton' onClick={() => this.postSearch()} onClick={() => this.ytSearch()}> Search </button>
+                <button className='searchbutton' onClick={() => this.postSearch()} > Search </button>
                 <div>
 <iframe 
+  title="player"
   width="35%"
   height="350"
-  frameborder="0"
   src="http://localhost:3535/api/youtubevideos" 
-  allowfullscreen
+  allowFullScreen
   frameBorder="1">
   
 </iframe>

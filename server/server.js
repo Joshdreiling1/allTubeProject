@@ -13,10 +13,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(cors());
 app.use(bodyParser.json())
+app.use(passport.initialize());
+app.use(passport.session());
 // massive connection
 massive(process.env.CONNECTION_STRING)
 .then( db => {
@@ -31,6 +32,7 @@ passport.use( new Auth0Strategy({
   }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
     // databse stuff
+    console.log('iraq')
         db.get_user([profile.identities[0].user_id]).then( user => {
             if (user[0]) {
                 done(null, user[0].id)
@@ -45,11 +47,15 @@ passport.use( new Auth0Strategy({
       }))
 
 
+
+
      passport.serializeUser(function(userId, done) {
         done(null, userId);
     })
       passport.deserializeUser( function( userId, done) {
-        app.get('db').current_user([userId]).then(user => {
+          console.log(userId, 'SAUCE')
+        app.get('db').current_user([1]).then(user => {
+            console.log(user)
                 done(null, user[0])
         })
     })
@@ -71,7 +77,7 @@ passport.use( new Auth0Strategy({
     //     }).catch((err) => {console.log(err)})
     // })
 
-    app.get('/api/user', (req, res) => {
+    app.get('/api/user',  passport.authenticate('auth0'), (req, res) => {
         req.app.get('db').current_user().then(user =>{
             res.status(200).send(user)
         }).catch((err) => {console.log(err)})
@@ -80,19 +86,22 @@ passport.use( new Auth0Strategy({
     // app.update('/api/user', (req, res) => {
     //     let {}
     // })
-    app.post('/api/history', (req, res) =>{
+    app.post('/api/history', (req, res) => {
         const history = app.get('db')
-        req.app.get('db').create_history(req.body.search).then(search =>{
+        req.app.get('db').create_history(req.body.userId, req.body.searches).then(search =>{
 
             res.send()
-
-        }).catch( function(err){
+            
+        })
+        
+        
+        .catch( function(err){
             console.log(err)
         })
     })
 
     app.get('/api/history', (req, res) => {
-        req.app.get('db').get_history().then(history =>{
+        req.app.get('db').get_history(req.user.userId).then(history =>{
             res.status(200).send(history);
         }).catch((err) => {console.log(err)})
     })
@@ -102,13 +111,10 @@ passport.use( new Auth0Strategy({
     request('https://www.googleapis.com/youtube/v3/search?key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20', function (error, response, body) {
           if (!error && response.statusCode == 200) {
             res.send(body)
-            console.log(body)
           }
         })
     })
 
-
-    
 
 const port = 3535;
 
