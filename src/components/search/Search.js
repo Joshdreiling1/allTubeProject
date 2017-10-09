@@ -8,15 +8,21 @@ export default class Search extends Component {
     super()
       this.state = {
         search: '',
-        ytvideo: []
+        ytvideo: [],
+        ytsearch: '',
         
       }
   }
         postSearch(search){
+          this.setState({
+            ytsearch: this.state.search
+          })
           console.log()
         axios.post('http://localhost:3535/api/history', {
-          search: this.state.search
+          searches: this.state.search
+          
         })
+        
         .then(function (response) {
           console.log(response)
         })
@@ -32,11 +38,14 @@ export default class Search extends Component {
         //   axios.get('http://localhost:3535/api/youtubevideos').then(response => {
         //     this.setState({
         //       ytvideo: response.data,
-        //       search: input
         //     })
         //   }).catch((error) => {console.log(error)})
         // }
-        
+        // ytsearch(input){
+        //   this.setState({ ytsearch: input})
+        // }
+
+
 
         render(){
                   
@@ -53,15 +62,18 @@ export default class Search extends Component {
                  </div> 
                 <div className='inputbox'>
                 <input onChange={(e) => this.updateInput(e.target.value)}></input> 
-                <button className='searchbutton' onClick={() => this.postSearch()} > Search </button>
+                <button className='searchbutton' onClick={() => this.postSearch()}> Search </button>
+                <div> 
+                  </div>
                 <div>
 <iframe 
   title="player"
   width="35%"
   height="350"
-  src="http://localhost:3535/api/youtubevideos" 
+  src={"https://www.youtube.com/embed?listType=search&list=" + this.state.ytsearch}
   allowFullScreen
-  frameBorder="1">
+  frameBorder="1"
+  list="20">
   
 </iframe>
                     </div>

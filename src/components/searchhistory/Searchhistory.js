@@ -12,7 +12,13 @@ export default class History extends Component {
         }
     }
    componentDidMount(){
-       axios.get('http://localhost:3535/api/history').then(response => {
+       axios.get('http://localhost:3535/api/history', {
+           headers: {
+             withCredentials: true
+            
+            
+            
+            }}).then(response => {
            this.setState({
                history: response.data
             })  
@@ -39,9 +45,8 @@ export default class History extends Component {
             <button className='signup'> Sign in or Sign up </button>
             <a href={'http://localhost:3535/auth/logout'}><button className='logout'> Logout </button> </a>
             </div>
-            <h1> You recently searched for: </h1>
-            <button > View history </button>
-            <div>
+            <h1 className='recenttext'> You recently searched for: </h1>
+            <div className='historybox'>
                 {searchhistory}
                 </div>
           </div>

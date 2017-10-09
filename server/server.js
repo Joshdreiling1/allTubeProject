@@ -13,7 +13,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
-
 app.use(cors());
 app.use(bodyParser.json())
 app.use(passport.initialize());
@@ -54,7 +53,7 @@ passport.use( new Auth0Strategy({
     })
       passport.deserializeUser( function( userId, done) {
           console.log(userId, 'SAUCE')
-        app.get('db').current_user([1]).then(user => {
+        app.get('db').current_user(userId).then(user => {
             console.log(user)
                 done(null, user[0])
         })
@@ -75,7 +74,7 @@ passport.use( new Auth0Strategy({
     //     req.app.get('db').get_friends().then(friends =>{
     //         res.status(200).send(friends);
     //     }).catch((err) => {console.log(err)})
-    // })
+    // }) 
 
     app.get('/api/user',  passport.authenticate('auth0'), (req, res) => {
         req.app.get('db').current_user().then(user =>{
@@ -89,8 +88,8 @@ passport.use( new Auth0Strategy({
     app.post('/api/history', (req, res) => {
         const history = app.get('db')
         req.app.get('db').create_history(req.body.userId, req.body.searches).then(search =>{
-
             res.send()
+            console.log(req.body.userId)
             
         })
         
@@ -101,6 +100,7 @@ passport.use( new Auth0Strategy({
     })
 
     app.get('/api/history', (req, res) => {
+        console.log('req.user', req.userId)
         req.app.get('db').get_history(req.user.userId).then(history =>{
             res.status(200).send(history);
         }).catch((err) => {console.log(err)})
@@ -108,12 +108,17 @@ passport.use( new Auth0Strategy({
 
     app.get('/api/youtubevideos', (req, res) => {
     const request = require('request');
-    request('https://www.googleapis.com/youtube/v3/search?key=AIzaSyBAtBtrAbzQoeTmrB7A2RsQDk2_4CZO4oA&part=snippet,id&order=date&maxResults=20', function (error, response, body) {
+    request('https://www.googleapis.com/youtube/v3/search?snippet.title', function (error, response, body) {
           if (!error && response.statusCode == 200) {
             res.send(body)
+            console.log(body)
           }
         })
     })
+
+    // app.get('/api/ytsearch', (req, res) => {
+
+    // })
 
 
 const port = 3535;
