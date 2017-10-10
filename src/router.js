@@ -5,6 +5,7 @@ import Login from './components/login/Login'
 import Search from './components/search/Search'
 import Upload from './components/upload/Upload'
 import Searchhistory from './components/searchhistory/Searchhistory'
+import About from './components/about/About'
 
 export default (
   <Switch>
@@ -13,5 +14,6 @@ export default (
       <Route path = "/search" component ={Search}/>
       <Route path ="/upload" component={Upload}/>
       <Route path="/searchhistory" component={Searchhistory}/>
+      <Route path='/About' component={About}/>
   </Switch>
 )

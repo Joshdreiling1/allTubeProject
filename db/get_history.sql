@@ -1,3 +1,3 @@
 SELECT *
 FROM history 
-where id = $1
+where userid = $1

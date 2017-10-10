@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
 
 .App {
   text-align: center;
@@ -10,10 +12,13 @@
 
 
 .App-header {
-  background-color: #001D9B;  
+  background-color: #1f2833;  
   height: 75px;
   padding: 20px;
-  color: white;
+  color: #66fcf1;
+  font-family: 'Anton'
+
+  
 }
 
 .App-intro {
@@ -23,7 +28,7 @@
 
 .Header-title{
   text-align: left;
-  color:white
+  color: #66fcf1
   
 }
 
@@ -33,19 +38,26 @@
   
 }
 .upload{
+  font-family: 'Anton';
   height: 450px;
   width: 400px;
-  background-color:#C9C9C9;
+  background-color: #0c131b;
   margin-top: 150px;
   margin-left: 350px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #45a29e
 }
 
 .searchbox{
   height: 450px;
   width: 400px;
-  background-color:#C9C9C9;
+  background-color:#1f2833;
   margin-top: -450px;
   margin-left: 1200px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #45a29e
 }
 
 .signup{
@@ -57,4 +69,26 @@
   /* background-color: #696969; */
   height: 21vh;
   width: 100vh;
+}
+
+.buttontheme{
+  color: #45a29e;
+  background-color: #1f2833;
+}
+.footer{
+  background-color: #1f2833;
+  margin-top: 400px;
+  height: 200px;
+  width: 100%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+  align-content: center;
+  color: lightgrey;
+}
+.socialmedia{
+  width: 50px;
+  height: 50px;
 }

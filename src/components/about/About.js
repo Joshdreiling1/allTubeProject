@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import './home.css'
-import uploadlogo from '../../assets/uploadlogo.png'
-import searchlogo from '../../assets/searchlogo.png'
+import './About.css'
 import snapchatlogo from '../../assets/snapchatlogo.png'
 import githublogo from '../../assets/25231.png'
 
-export default class Home extends Component {
+export default class About extends Component {
     
     render(){
         return (
@@ -17,29 +15,17 @@ export default class Home extends Component {
                      <button className='signup buttontheme'> Sign in or Sign up </button> </a>
                     <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
                      <h2 className='motto'> The only way </h2>
-                     <Link to='/Searchhistory'>
-                     <button className='historybtn buttontheme'> View History </button>
-                     </Link>
-                </div>
                 <div>
-                    <div className='upload'>
-                        <h2> Upload </h2>
-                        <Link to='/upload'>  <img className='uploadlogo' src= {uploadlogo} alt='' /></Link>
+                    <h1> yeah i sold crack so what? </h1>
                     </div>
-                    <div className='searchbox'>
-                    <h2> Search </h2>
-                    <Link to= '/search'>
-                     <img className='searchlogo' src={searchlogo} alt=''/>
-                    </Link>
-                    </div>
-                </div>
                 <div className='footer'>
-                   <ul> About this Website </ul>
+                   <Link to='/About'> <ul> About this Website </ul> </Link>
                    <ul> Terms of Service </ul>
                    <ul> Hit me up on:</ul>
                <a href='https://www.snapchat.com/add/joshdreiling7'> <img className='socialmedia'src={snapchatlogo} alt=''/> </a> <a href='https://github.com/Joshdreiling1'><img className='socialmedia'src={githublogo} alt=''/> </a>
 
                     </div>
+            </div>
             </div>
         )
     }

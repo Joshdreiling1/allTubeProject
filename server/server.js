@@ -31,14 +31,13 @@ passport.use( new Auth0Strategy({
   }, function(accessToken, refreshToken, extraParams, profile, done) {
     const db = app.get('db');
     // databse stuff
-    console.log('iraq')
+    // console.log('iraq')
         db.get_user([profile.identities[0].user_id]).then( user => {
             if (user[0]) {
                 done(null, user[0].id)
             } else {
                 db.create_user([
                     profile.emails[0].value,
-                    profile.password,
                     profile.identities[0].user_id]).then( user => {
                         done(null, user[0].id)
                     })
@@ -52,9 +51,9 @@ passport.use( new Auth0Strategy({
         done(null, userId);
     })
       passport.deserializeUser( function( userId, done) {
-          console.log(userId, 'SAUCE')
+        //   console.log(userId, 'SAUCE')
         app.get('db').current_user(userId).then(user => {
-            console.log(user)
+            console.log(userId)
                 done(null, user[0])
         })
     })
@@ -87,9 +86,10 @@ passport.use( new Auth0Strategy({
     // })
     app.post('/api/history', (req, res) => {
         const history = app.get('db')
-        req.app.get('db').create_history(req.body.userId, req.body.searches).then(search =>{
+        // console.log('Land before time')
+        req.app.get('db').create_history([req.user.id, req.body.searches]).then(search =>{
             res.send()
-            console.log(req.body.userId)
+            // console.log("im suacing on u")
             
         })
         
@@ -100,8 +100,8 @@ passport.use( new Auth0Strategy({
     })
 
     app.get('/api/history', (req, res) => {
-        console.log('req.user', req.userId)
-        req.app.get('db').get_history(req.user.userId).then(history =>{
+        // console.log( req.user.userId)
+        req.app.get('db').get_history(req.user.id, req.body.searches).then(history =>{
             res.status(200).send(history);
         }).catch((err) => {console.log(err)})
     })
@@ -111,10 +111,11 @@ passport.use( new Auth0Strategy({
     request('https://www.googleapis.com/youtube/v3/search?snippet.title', function (error, response, body) {
           if (!error && response.statusCode == 200) {
             res.send(body)
-            console.log(body)
+            // console.log('body')
           }
         })
     })
+    // use local address instead of full address on all axios requests
 
     // app.get('/api/ytsearch', (req, res) => {
 

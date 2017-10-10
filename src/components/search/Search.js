@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import snapchatlogo from '../../assets/snapchatlogo.png'
+import githublogo from '../../assets/25231.png'
 
 export default class Search extends Component {
   constructor() {
@@ -18,7 +19,7 @@ export default class Search extends Component {
             ytsearch: this.state.search
           })
           console.log()
-        axios.post('http://localhost:3535/api/history', {
+        axios.post('/api/history', {
           searches: this.state.search
           
         })
@@ -56,17 +57,17 @@ export default class Search extends Component {
                 <div className="App">
               <div className="App-header">
             <Link to='/'><h2 className="Header-title">allTube</h2></Link>
-            <button className='signup'> Sign in or Sign up </button>
-            <a href={'http://localhost:3535/auth/logout'}><button className='logout'> Logout </button> </a>
+            <button className='signup buttontheme'> Sign in or Sign up </button>
+            <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
               </div>
                  </div> 
                 <div className='inputbox'>
                 <input onChange={(e) => this.updateInput(e.target.value)}></input> 
-                <button className='searchbutton' onClick={() => this.postSearch()}> Search </button>
+                <button className='searchbutton buttontheme' onClick={() => this.postSearch()}> Search </button>
                 <div> 
                   </div>
                 <div>
-<iframe 
+<iframe className='youtubebox'
   title="player"
   width="35%"
   height="350"
@@ -77,6 +78,13 @@ export default class Search extends Component {
   
 </iframe>
                     </div>
+                    </div>
+                    <div className='footer'>
+                   <ul> About this Website </ul>
+                   <ul> Terms of Service </ul>
+                   <ul> Hit me up on:</ul>
+               <a href='https://www.snapchat.com/add/joshdreiling7'> <img className='socialmedia'src={snapchatlogo} alt=''/> </a> <a href='https://github.com/Joshdreiling1'><img className='socialmedia'src={githublogo} alt=''/> </a>
+
                     </div>
             
          </div>

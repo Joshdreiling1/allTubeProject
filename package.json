@@ -2,6 +2,7 @@
   "name": "personalproject",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3535",
   "dependencies": {
     "@auth0/styleguide-components": "^2.0.3",
     "@auth0/styleguide-core": "^2.0.6",
