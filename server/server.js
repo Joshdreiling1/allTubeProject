@@ -53,7 +53,7 @@ passport.use( new Auth0Strategy({
       passport.deserializeUser( function( userId, done) {
         //   console.log(userId, 'SAUCE')
         app.get('db').current_user(userId).then(user => {
-            console.log(userId)
+            // console.log(userId)
                 done(null, user[0])
         })
     })
@@ -120,6 +120,23 @@ passport.use( new Auth0Strategy({
     // app.get('/api/ytsearch', (req, res) => {
 
     // })
+
+    app.get('/api/vimeo', (req, res) => {
+        const request = require('request')
+        request('https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/video/search?q=d', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.send(body)
+                console.log(body)
+            }
+        })
+    })
+
+    app.post('/api/uploads', (req, res) => {
+        const videos = app.get('db')
+        req.app.get('db').add_video([req.user.id, req.body.title, req.body.source]).then(search =>{
+            res.send()
+    })
+})
 
 
 const port = 3535;

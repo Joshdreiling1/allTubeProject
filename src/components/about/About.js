@@ -19,8 +19,8 @@ export default class About extends Component {
                     <h1> yeah i sold crack so what? </h1>
                     </div>
                 <div className='footer'>
-                   <Link to='/About'> <ul> About this Website </ul> </Link>
-                   <ul> Terms of Service </ul>
+                <Link to='/about'><ul className='listfont'> About this Website </ul></Link>
+                <Link to='/terms'><ul className='listfont'> Terms of Service </ul></Link>
                    <ul> Hit me up on:</ul>
                <a href='https://www.snapchat.com/add/joshdreiling7'> <img className='socialmedia'src={snapchatlogo} alt=''/> </a> <a href='https://github.com/Joshdreiling1'><img className='socialmedia'src={githublogo} alt=''/> </a>
 

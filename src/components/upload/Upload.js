@@ -4,39 +4,85 @@ import './Upload.css'
 import loadingbar from '../../assets/loading-bar.gif'
 import snapchatlogo from '../../assets/snapchatlogo.png'
 import githublogo from '../../assets/25231.png'
+import axios from 'axios'
 
 export default class Upload extends Component {
+    constructor() {
+        super()
+          this.state = {
+            title: '',
+            source: '',
+            form: []
+          }
+      }
+            postVid(form){
+              this.setState({
+                form: [this.state.title, this.state.source]
+                
+              })
+            axios.post('/api/uploads', {
+                title: this.state.title,
+                source: this.state.source
+              
+            
+            })
+        }
+        
+            updateTitle(input){
+                this.setState({
+                   title: input
+                });
+            
+            }
+            updateSource(input){
+                this.setState({
+                    source: input
+                })
+            
+        
+                
+                
+    }
+
     render(){
         return (
             <div>
             <div className="App">
             <div className="App-header">
             <Link to='/'><h2 className="Header-title">allTube</h2></Link>
-            <button className='signup buttontheme'> Sign in or Sign up </button>
+            <a className='auth0' href={'http://localhost:3535/auth' }>
+            <button className='signup buttontheme'> Sign in or Sign up </button> </a>
             <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
+            <h2 className='motto'> Have You Seen Paul? </h2>
+                        <div className='navbar'>
+                        <Link to ='/upload'><ul className='listfont'> Upload </ul></Link>
+                        <Link to ='/search'><ul className='listfont'> Search </ul></Link>
+                       <Link to ='/Searchhistory'> <ul className='listfont'> View Search History </ul></Link>
+                        </div>
             </div>
             <div className='uploadpreview'>
                 <h2> Upload here </h2>
-                <input /> <button className ='buttontheme'>Choose File</button>
+                <input  /> <button className ='buttontheme'>Choose File</button>
                 <div className='uploadpreviewbox'>
                 <h3> Upload preview </h3>
                 </div>
                 <div>
             <div className='uploadinput'>
                 <h3> Title </h3>
-                    <input className='input' />
+                    <input onChange={(e) => this.updateTitle(e.target.value)} className='input' />
+                    {console.log(this.state)}
                 <h3> Description </h3>
                     <input className='descinput' />
                 <h3> Tags </h3>
                     <input className='input'/>
                     <p> Select a source </p>
-                <select>
-                    <option> Select </option>
-                    <option> Youtube </option>
-                    <option> Vimeo </option>
+                <select onChange={(e) => this.updateSource(e.target.value)}>
+                    <option value="" >  Select </option>
+                    <option value="Youtube" > Youtube </option>
+                    <option value="Vimeo"> Vimeo </option>
                     </select>
                 </div>
-                <button className='buttontheme uploadbtn'>
+               <button className='buttontheme uploadbtn' onClick={() => this.postVid()}>
                     Upload 
                 </button>
             <div className='uploadprogress'>
@@ -48,8 +94,8 @@ export default class Upload extends Component {
                 </div>
           </div>
           <div className='footer'>
-                   <ul> About this Website </ul>
-                   <ul> Terms of Service </ul>
+          <Link to='/about'><ul className='listfont'> About this Website </ul></Link>
+          <Link to='/terms'><ul className='listfont'> Terms of Service </ul></Link>
                    <ul> Hit me up on:</ul>
                <a href='https://www.snapchat.com/add/joshdreiling7'> <img className='socialmedia'src={snapchatlogo} alt=''/> </a> <a href='https://github.com/Joshdreiling1'><img className='socialmedia'src={githublogo} alt=''/> </a>
 

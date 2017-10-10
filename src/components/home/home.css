@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 
 .uploadlogo{
     height: 400px;
@@ -24,6 +25,17 @@
     font-size: 16px;
     margin-left: 200px;
     margin-top: -40px;
-    font-family:  Helvetica
+    font-family:  Lobster
     
 }
+.historybtn{
+    margin-top: 10px;
+}
+/* .navbar{
+    margin-left: -30px;
+    margin-top: -19px;
+    margin-bottom: 10px;
+    height: 110vh;
+    width: 250px;
+    background-color: red;
+} */

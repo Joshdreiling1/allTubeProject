@@ -1,33 +1,33 @@
-export function search(input){
-    return {
-        search: '',
-        ytvideo: []
-    };
-}
-
-export function signUpForCreditCard() {
-    return {
-        type: 'SIGNUP_FOR_CREDIT_CARD'
-    };
-}
+import axios from 'axios';
 
 const initialState = {
     search: '',
     ytvideo: [],
+    ytsearch: '',
+    history: []
+}
 
-};
+const GET_USER = 'GET_USER'
 
+export function getUser() {
+    const user = axios.get('/auth/user').then(res => {
+        return res.data;
+    })
+    return {
+        type: GET_USER,
+        payload: user
 
-export default function reducer(state = initialState, action){
-    switch (action.type) {
-        case 'SEARCH':
-        const name = action.payload
-    
-
-    return Object.assign({}, state, {search: name});
-    case 'SIGN_UP_FOR_CREDIT_CARD':
-        return Object.assign({}, {ytvideo: []})
-        default:
-        return state;
     }
+}
+
+export default function reducer(state=initialState, action) {
+    switch (action.type) {
+        case GET_USER + '_FULFILLED':
+        return Object.assign({}, state, {user: action.payload})
+
+    
+        default:
+            return state;
+    }
+
 }

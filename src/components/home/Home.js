@@ -17,9 +17,11 @@ export default class Home extends Component {
                      <button className='signup buttontheme'> Sign in or Sign up </button> </a>
                     <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
                      <h2 className='motto'> The only way </h2>
-                     <Link to='/Searchhistory'>
-                     <button className='historybtn buttontheme'> View History </button>
-                     </Link>
+                        <div className='navbar'>
+                            <Link to ='/upload'><ul className='listfont'> Upload </ul></Link>
+                            <Link to ='/search'><ul className='listfont'> Search </ul></Link>
+                           <Link to ='/Searchhistory'> <ul className='listfont'> View Search History </ul></Link>
+                        </div>
                 </div>
                 <div>
                     <div className='upload'>
@@ -34,8 +36,8 @@ export default class Home extends Component {
                     </div>
                 </div>
                 <div className='footer'>
-                   <ul> About this Website </ul>
-                   <ul> Terms of Service </ul>
+                   <Link to='/about'><ul className='listfont'> About this Website </ul></Link>
+                   <Link to='/terms'><ul className='listfont'> Terms of Service </ul></Link>
                    <ul> Hit me up on:</ul>
                <a href='https://www.snapchat.com/add/joshdreiling7'> <img className='socialmedia'src={snapchatlogo} alt=''/> </a> <a href='https://github.com/Joshdreiling1'><img className='socialmedia'src={githublogo} alt=''/> </a>
 
