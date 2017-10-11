@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import './Upload.css'
-import loadingbar from '../../assets/loading-bar.gif'
 import snapchatlogo from '../../assets/snapchatlogo.png'
 import githublogo from '../../assets/25231.png'
 import axios from 'axios'
@@ -17,17 +16,14 @@ export default class Upload extends Component {
       }
             postVid(form){
               this.setState({
-                form: [this.state.title, this.state.source]
-                
+                form: [this.state.title, this.state.source]   
               })
+              alert('Upload Sucessful')
             axios.post('/api/uploads', {
                 title: this.state.title,
                 source: this.state.source
-              
-            
             })
         }
-        
             updateTitle(input){
                 this.setState({
                    title: input
@@ -37,11 +33,7 @@ export default class Upload extends Component {
             updateSource(input){
                 this.setState({
                     source: input
-                })
-            
-        
-                
-                
+                })      
     }
 
     render(){
@@ -58,6 +50,7 @@ export default class Upload extends Component {
                         <Link to ='/upload'><ul className='listfont'> Upload </ul></Link>
                         <Link to ='/search'><ul className='listfont'> Search </ul></Link>
                        <Link to ='/Searchhistory'> <ul className='listfont'> View Search History </ul></Link>
+                       <Link to='/myvideos'> <ul className='listfont'> My Videos </ul></Link>
                         </div>
             </div>
             <div className='uploadpreview'>
@@ -85,9 +78,7 @@ export default class Upload extends Component {
                <button className='buttontheme uploadbtn' onClick={() => this.postVid()}>
                     Upload 
                 </button>
-            <div className='uploadprogress'>
-                <img className='progressbar' src ={loadingbar} alt=''/>
-                </div>
+
 
   
                 </div>

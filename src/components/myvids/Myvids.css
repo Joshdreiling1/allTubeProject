@@ -1,0 +1,36 @@
+.videopage{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+	margin-left: 195.5px;
+	
+}
+.vids{
+	margin-top: 50px;
+	height: 270px;
+	width: 550px;
+	background-color: #1f2833;
+	border-style: solid;
+	border-color: #45a29e;
+}
+.vidpreview{
+	height: 220px;
+	width: 370px;
+	background-color: rgb(94, 94, 94);
+	margin-top: 10px;
+	margin-left: 90px;
+	border-style: solid;
+	border-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.previewtext{
+	color: black;
+}
+.videoTitlePage{
+	margin-top: -200px;;
+}

@@ -80,6 +80,8 @@ export default class Search extends Component {
                         <Link to ='/upload'><ul className='listfont'> Upload </ul></Link>
                         <Link to ='/search'><ul className='listfont'> Search </ul></Link>
                        <Link to ='/Searchhistory'> <ul className='listfont'> View Search History </ul></Link>
+                       <Link to='/myvideos'> <ul className='listfont'> My Videos </ul></Link>
+
                         </div> </div>
                  </div> 
                 <div className='inputbox'>

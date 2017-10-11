@@ -7,6 +7,7 @@ import Upload from './components/upload/Upload'
 import Searchhistory from './components/searchhistory/Searchhistory'
 import About from './components/about/About'
 import Terms from './components/terms/Terms'
+import Myvids from './components/myvids/Myvids'
 
 export default (
   <Switch>
@@ -17,5 +18,6 @@ export default (
       <Route path="/searchhistory" component={Searchhistory}/>
       <Route path='/About' component={About}/>
       <Route path='/Terms' component={Terms}/>
+      <Route path='/Myvideos' component={Myvids}/>
   </Switch>
 )

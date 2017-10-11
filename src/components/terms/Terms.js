@@ -16,7 +16,7 @@ export default class Terms extends Component {
                     <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
                      <h2 className='motto'> The only way </h2>
                 <div>
-                    <h1> There are no terms, why? Well idk i havent come up with anything yet so yeah  </h1>
+                    <h1> You listen to Ski Mask the Slump God?  </h1>
                     </div>
                 <div className='footer'>
                 <Link to='/about'><ul className='listfont'> About this Website </ul></Link>

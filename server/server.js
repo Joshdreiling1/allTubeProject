@@ -137,6 +137,12 @@ passport.use( new Auth0Strategy({
             res.send()
     })
 })
+app.get('/api/uploads', (req, res) => {
+    // console.log( req.user.userId)
+    req.app.get('db').get_video(req.user.id, req.body.title, req.body.source).then(vids =>{
+        res.status(200).send(vids);
+    }).catch((err) => {console.log(err)})
+})
 
 
 const port = 3535;
