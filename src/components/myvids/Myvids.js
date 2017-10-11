@@ -63,7 +63,7 @@ export default class Myvids extends Component {
         return (
             <div className="App">
                 <div className="App-header">
-                    <Link to='/'><h2 className="Header-title">allTube</h2></Link>
+                    <Link to='/'><h2 className="Header-title">AllTheVideos</h2></Link>
                     <a className='auth0' href={'http://localhost:3535/auth' }>
                      <button className='signup buttontheme'> Sign in or Sign up </button> </a>
                     <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
@@ -81,7 +81,7 @@ export default class Myvids extends Component {
                     this.setState({
                         input: e.target.value
                     })
-                }}  placeholder="search"></input>
+                }}  placeholder="Search"></input>
                 <select onChange={(e) => this.updateSource(e.target.value)}>
                     <option value=''>Source</option>
                     <option onClick={()=>{this.setState({dropdown:'Youtube'})}} value='Youtube'>Youtube</option>

@@ -12,7 +12,7 @@ export default class Home extends Component {
         return (
             <div className="App">
                 <div className="App-header">
-                    <Link to='/'><h2 className="Header-title">allTube</h2></Link>
+                    <Link to='/'><h2 className="Header-title">AllTheVideos</h2></Link>
                     <a className='auth0' href={'http://localhost:3535/auth' }>
                      <button className='signup buttontheme'> Sign in or Sign up </button> </a>
                     <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
