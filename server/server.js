@@ -108,7 +108,7 @@ passport.use( new Auth0Strategy({
     })
 })
 
-app.get('/api/uploads', (req, res) => {
+    app.get('/api/uploads', (req, res) => {
     req.app.get('db').get_video(req.user.id, req.body.title, req.body.source).then(vids =>{
         res.status(200).send(vids);
     }).catch((err) => {console.log(err)})

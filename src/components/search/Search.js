@@ -49,23 +49,8 @@ export default class Search extends Component {
         })
       }
 
-        // componentDidMount(input){
-        //   console.log('componentdidmountisrunning')
-        //   axios.get('http://localhost:3535/api/youtubevideos').then(response => {
-        //     this.setState({
-        //       ytvideo: response.data,
-        //     })
-        //   }).catch((error) => {console.log(error)})
-        // }
-        // ytsearch(input){
-        //   this.setState({ ytsearch: input})
-        // }
-
-
-
         render(){
                   
-            
           console.log(this.state)
         return (
         <div>
@@ -105,7 +90,7 @@ export default class Search extends Component {
 title="player"
   width="35%"
   height="350"
-  src={"https://player.vimeo.com/video/2"}
+  src={"https://player.vimeo.com/video/" + this.state.ytsearch}
   allowFullScreen
   frameBorder="1"
   list="1">

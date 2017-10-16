@@ -5,14 +5,12 @@ import axios from 'axios'
 import snapchatlogo from '../../assets/snapchatlogo.png'
 import githublogo from '../../assets/25231.png'
 
-
 export default class History extends Component {
     constructor() {
         super()
         this.state = {
             search: '',
             history: []
-            
         }
     }
    componentDidMount(){
@@ -25,6 +23,7 @@ export default class History extends Component {
             })  
      })
     }
+
     render(){
         var searchhistory = this.state.history.map(function(search){
             return (
@@ -32,7 +31,7 @@ export default class History extends Component {
                        <div className='searches'>
                        {search.searches}</div>                  
                </div>
-                   
+     
                )
            })
         
@@ -48,7 +47,7 @@ export default class History extends Component {
             <div className='navbar'>
 
                         <Link to ='/upload'><ul className='listfont'> Upload </ul></Link>
-                        <Link to ='/search'><ul className='listfont'> Search </ul></Link>
+                        <Link to =/search'><ul className='listfont'> Search </ul></Link>
                        <Link to ='/Searchhistory'> <ul className='listfont'> View Search History </ul></Link>
                        <Link to='/myvideos'> <ul className='listfont'> My Videos </ul></Link>
 
@@ -68,7 +67,6 @@ export default class History extends Component {
                     </div>
         </div>
    
-
         )
     }
 }

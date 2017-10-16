@@ -34,7 +34,6 @@ export default class Myvids extends Component {
     .filter((vid) => {
          var userInput = this.state.input.toLowerCase();
          var title = vid.title.toLowerCase();
-         var source = vid.source.toLowerCase();
 
          return title.startsWith(userInput) 
     })
@@ -58,7 +57,6 @@ export default class Myvids extends Component {
                </div>   
                )
            })
-        
 
         return (
             <div className="App">
