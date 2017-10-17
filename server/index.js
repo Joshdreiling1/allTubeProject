@@ -7,6 +7,9 @@ const express = require('express')
 , Auth0Strategy = require('passport-auth0')
 , cors = require('cors')
 
+
+
+
 const app = express();
 
 app.use(session({
@@ -53,13 +56,13 @@ passport.use( new Auth0Strategy({
     })
     app.get('/auth', passport.authenticate('auth0'));
     app.get('/auth/callback', passport.authenticate('auth0',{
-        successRedirect: 'http://localhost:3000/#/',
-        failureRedirect: '/auth'
+        successRedirect: process.env.SUCCESS_REDIRECT,
+        failureRedirect: process.env.FAILURE_REDIRECT
     }))
 
     app.get('/auth/logout', (req,res) => {
         req.logOut();
-        res.redirect(302, 'https://joshdreiling.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F&client_id=Fd9JMpbOX09oR0Ack42zg5vaoMsZoCFN')
+        res.redirect(302, process.env.REACT_APP_LOGOUT)
     })
 
     app.get('/api/user',  passport.authenticate('auth0'), (req, res) => {
@@ -112,6 +115,12 @@ passport.use( new Auth0Strategy({
     req.app.get('db').get_video(req.user.id, req.body.title, req.body.source).then(vids =>{
         res.status(200).send(vids);
     }).catch((err) => {console.log(err)})
+})
+app.use( express.static( `${__dirname}/../build` ) );
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
 })
 
 const port = 3535;

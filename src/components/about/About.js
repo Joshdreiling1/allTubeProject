@@ -11,9 +11,9 @@ export default class About extends Component {
             <div className="App">
                 <div className="App-header">
                     <Link to='/'><h2 className="Header-title">AllTheVideos</h2></Link>
-                    <a className='auth0' href={'http://localhost:3535/auth' }>
-                     <button className='signup buttontheme'> Sign in or Sign up </button> </a>
-                    <a href={'http://localhost:3535/auth/logout'}><button className='logout buttontheme'> Logout </button> </a>
+                    <a className='auth0' href={process.env.REACT_APP_LOGIN }>
+                    <button className='signup buttontheme'> Sign in or Sign up </button> </a>
+                   <a href={process.env.REACT_APP_LOGOUT}><button className='logout buttontheme'> Logout </button> </a>
                      <h2 className='motto'> The only way </h2>
                 <div>
                     <h1> yeah i sold crack so what? </h1>
