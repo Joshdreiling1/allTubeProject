@@ -11,17 +11,24 @@ export default class Upload extends Component {
           this.state = {
             title: '',
             source: '',
-            form: []
+            form: [],
+            filebox: '',
+            description: '',
+            tags: ''
           }
       }
             postVid(form){
-              this.setState({
-                form: [this.state.title, this.state.source]   
-              })
-              alert('Upload Sucessful')
             axios.post('/api/uploads', {
                 title: this.state.title,
                 source: this.state.source
+            })
+            alert('Your video has been uploaded!')
+            this.setState({
+                title: '',
+                source: '',
+                filebox: '',
+                description: '',
+                tags: ''
             })
         }
             updateTitle(input){
@@ -30,13 +37,31 @@ export default class Upload extends Component {
                 });
             
             }
+            updateDescription(input){
+                this.setState({
+                   description: input
+                });
+            }
+            updateTags(input){
+                this.setState({
+                   tags: input
+                });
+            }
             updateSource(input){
                 this.setState({
                     source: input
                 })      
     }
 
+            updateFile(input){
+                this.setState({
+                    filebox: input
+                })
+            }
+
     render(){
+
+        
         return (
             <div>
             <div className="App">
@@ -55,29 +80,27 @@ export default class Upload extends Component {
             </div>
             <div className='uploadpreview'>
                 <h2> Upload here </h2>
-                <input  /> <button className ='buttontheme'>Choose File</button>
+                <input type='file' className='buttontheme' onChange={(e) => this.updateFile(e.target.value)} /> 
                 <div className='uploadpreviewbox'>
                 <h3> Upload preview </h3>
                 </div>
                 <div>
             <div className='uploadinput'>
                 <h3> Title </h3>
-                    <input onChange={(e) => this.updateTitle(e.target.value)} className='input' />
+                    <input value={this.state.title} onChange={(e) => this.updateTitle(e.target.value)} placeholder='Title your video!' className='input' />
                     {console.log(this.state)}
                 <h3> Description </h3>
-                    <input className='descinput' />
+                    <input value={this.state.description} placeholder='Tell the world about your video!' className='descinput' onChange={(e) => this.updateDescription(e.target.value)} />
                 <h3> Tags </h3>
-                    <input className='input'/>
+                    <input value={this.state.tags} className='input' placeholder='These mean nothing nowadays' onChange={(e) => this.updateTags(e.target.value)}/>
                     <p> Select a source </p>
                 <select onChange={(e) => this.updateSource(e.target.value)}>
-                    <option value="" >  Select </option>
+                    <option value=''>  Select </option>
                     <option value="Youtube" > Youtube </option>
                     <option value="Vimeo"> Vimeo </option>
                     </select>
                 </div>
-               <button className='buttontheme uploadbtn' onClick={() => this.postVid()}>
-                    Upload 
-                </button>
+               <button className='buttontheme uploadbtn' onClick={() => this.postVid()}>Upload</button>
 
 
   

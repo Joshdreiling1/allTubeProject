@@ -29,6 +29,19 @@ export default class Myvids extends Component {
             dropdown: input
         })
     }
+
+    deleteVideo(vid){
+        axios.delete(`/api/uploads/${vid}`).then((response) =>{
+            this.setState({
+                myVids: response.data
+            })
+        })
+    }
+
+    updateVideo(){
+        
+    }
+    
     render(){
     var videos = this.state.myVids
     .filter((vid) => {
@@ -45,7 +58,7 @@ export default class Myvids extends Component {
        }
     })
 
-     .map(function(vid){
+     .map((vid) => {
             return (
                <div className='vids'>                              
                        <div >
@@ -54,6 +67,7 @@ export default class Myvids extends Component {
                        <div className='vidpreview'>
                         <p className='previewtext'>Preview</p>
                         </div>
+                        <button className='buttontheme'onClick={() => this.deleteVideo(vid.id)}> Delete </button>
                </div>   
                )
            })
@@ -89,13 +103,13 @@ export default class Myvids extends Component {
                 
                 <div className='videopage'>
                     {videos}
+                    {/* <button onClick={() => this.deleteVideo(vid)}> Delete </button> */}
                     </div>
                 <div className='footer'>
                 <Link to='/about'><ul className='listfont'> About this Website </ul></Link>
                 <Link to='/terms'><ul className='listfont'> Terms of Service </ul></Link>
                    <ul> Hit me up on:</ul>
                <a href='https://www.snapchat.com/add/joshdreiling7'> <img className='socialmedia'src={snapchatlogo} alt=''/> </a> <a href='https://github.com/Joshdreiling1'><img className='socialmedia'src={githublogo} alt=''/> </a>
-
                     </div>
             </div>
             </div>

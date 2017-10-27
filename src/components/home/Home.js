@@ -15,7 +15,7 @@ export default class Home extends Component {
                     <Link to='/'><h2 className="Header-title">AllTheVideos</h2></Link>
                     <a className='auth0' href={process.env.REACT_APP_LOGIN }>
                      <button className='signup buttontheme'> Sign in or Sign up </button> </a>
-                    <a href={process.env.REACT_APP_LOGOUT}><button className='logout buttontheme'> Logout </button> </a>
+                    <a href='https://joshdreiling.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F&client_id=Fd9JMpbOX09oR0Ack42zg5vaoMsZoCFN'><button className='logout buttontheme'> Logout </button> </a>
                      <h2 className='motto'> The only way </h2>
                         <div className='navbar'>
                             <Link to ='/upload'><ul className='listfont'> Upload </ul></Link>

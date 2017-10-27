@@ -62,7 +62,7 @@ passport.use( new Auth0Strategy({
 
     app.get('/auth/logout', (req,res) => {
         req.logOut();
-        res.redirect(302, process.env.REACT_APP_LOGOUT)
+        res.redirect(302, process.env.LOGOUT_REDIRECT)
     })
 
     app.get('/api/user',  passport.authenticate('auth0'), (req, res) => {
@@ -116,12 +116,21 @@ passport.use( new Auth0Strategy({
         res.status(200).send(vids);
     }).catch((err) => {console.log(err)})
 })
-app.use( express.static( `${__dirname}/../build` ) );
+    app.delete('/api/uploads/:id', (req, res)  => {
+            req.app.get('db').delete_video([req.user.id, req.params.id]).then(vids =>{
+                req.app.get('db').get_video([req.user.id]).then(vids => {
+                    res.status(200).send(vids);
+            })
+            }).catch((err) => {console.log(err
+        )})
+        })
 
-const path = require('path')
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-})
+// app.use( express.static( `${__dirname}/../build` ) );
+
+// const path = require('path')
+// app.get('*', (req, res)=>{
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// })
 
 const port = 3535;
 

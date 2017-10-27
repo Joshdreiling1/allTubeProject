@@ -1,0 +1,1 @@
+delete from videos where userId =$1 and id = $2

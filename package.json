@@ -33,5 +33,5 @@
 "now":{
   "alias":"Allthevideos"
 },
-"proxy":"http://localhost:3030"
+"proxy":"http://localhost:3535"
 }

@@ -14,10 +14,7 @@ export default class History extends Component {
         }
     }
    componentDidMount(){
-       axios.get('/api/history', {
-           headers: {
-             withCredentials: true
-            }}).then(response => {
+       axios.get('/api/history').then(response => {
            this.setState({
                history: response.data
             })  
@@ -25,7 +22,7 @@ export default class History extends Component {
     }
 
     render(){
-
+    
         var searchhistory = this.state.history.map(function(search){
             return (
                <div >                              
