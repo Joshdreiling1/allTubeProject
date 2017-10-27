@@ -7,9 +7,6 @@ const express = require('express')
 , Auth0Strategy = require('passport-auth0')
 , cors = require('cors')
 
-
-
-
 const app = express();
 
 app.use(session({
@@ -123,7 +120,17 @@ passport.use( new Auth0Strategy({
             })
             }).catch((err) => {console.log(err
         )})
-        })
+        
+    })
+
+    app.put('/api/uploads/:id', (req, res) => {
+        req.app.get('db').edit_video([req.user.id, req.params.id, req.body.title]).then(title => {
+            req.app.get('db').get_video([req.user.id]).then(vids => {
+                res.send()
+            })
+            })
+            })
+        
 
 // app.use( express.static( `${__dirname}/../build` ) );
 

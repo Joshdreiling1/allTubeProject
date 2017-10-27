@@ -11,7 +11,8 @@ export default class Myvids extends Component {
         this.state = {
             myVids: [],
             dropdown: '',
-            input: ''
+            input: '',
+            newtitle: ''
         }
     }
    componentDidMount(){
@@ -29,18 +30,26 @@ export default class Myvids extends Component {
             dropdown: input
         })
     }
+    updateVideo(input){
+        this.setState({
+            newtitle: input
+        })
+    }
 
-    deleteVideo(vid){
-        axios.delete(`/api/uploads/${vid}`).then((response) =>{
+    deleteVideo(title){
+        axios.delete(`/api/uploads/${title}`).then((response) =>{
             this.setState({
                 myVids: response.data
             })
         })
     }
-
-    updateVideo(){
-        
+    postUpdate(title){
+        axios.put(`/api/uploads/${title}`, {
+            title: this.state.newtitle
+        }).then((response) =>{
+        })
     }
+    
     
     render(){
     var videos = this.state.myVids
@@ -63,11 +72,12 @@ export default class Myvids extends Component {
                <div className='vids'>                              
                        <div >
                         {[vid.title,', on ', vid.source]}
+                        <button className='buttontheme'onClick={() => this.deleteVideo(vid.id)}> Delete </button>
+                        <input onChange={(e) => this.updateVideo(e.target.value)}/> <button onClick={() => this.postUpdate(vid.id)}>Change Title</button>
                         </div>               
                        <div className='vidpreview'>
                         <p className='previewtext'>Preview</p>
                         </div>
-                        <button className='buttontheme'onClick={() => this.deleteVideo(vid.id)}> Delete </button>
                </div>   
                )
            })
